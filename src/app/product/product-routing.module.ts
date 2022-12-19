@@ -1,4 +1,3 @@
-import { ProductListTableComponent } from './product-list-table/product-list-table.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { NgModule } from '@angular/core';
@@ -6,8 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductComponent } from './product.component';
 
 const routes: Routes = [
-  { path: '', component: ProductListTableComponent },
-  { path: 'product-details', component: ProductDetailsComponent },
+  { path: '', component: ProductComponent },
+  { path: 'product-details/:short_code', component: ProductDetailsComponent },
 ];
 
 @NgModule({

@@ -5,16 +5,22 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { ProductListTableComponent } from './product-list-table/product-list-table.component';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     ProductComponent,
     ProductListComponent,
     ProductDetailsComponent,
-    ProductListTableComponent,
   ],
-  imports: [CommonModule, ProductRoutingModule],
+  imports: [
+    CommonModule,
+    ProductRoutingModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+  ],
   exports: [ProductRoutingModule, ProductListComponent],
 })
 export class ProductModule {}
