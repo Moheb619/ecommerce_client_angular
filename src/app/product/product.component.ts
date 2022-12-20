@@ -31,6 +31,7 @@ export class ProductComponent implements AfterViewInit, OnInit, OnDestroy {
     'origin',
     'quantity',
     'rating',
+    'action',
   ];
   ELEMENT_DATA = [];
   dataSource: MatTableDataSource<ProductsModel>;

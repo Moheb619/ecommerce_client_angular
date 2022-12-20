@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -8,11 +9,14 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { AddProductComponent } from './add-product/add-product.component';
 @NgModule({
   declarations: [
     ProductComponent,
     ProductListComponent,
     ProductDetailsComponent,
+    AddProductComponent,
   ],
   imports: [
     CommonModule,
@@ -20,6 +24,9 @@ import { MatSortModule } from '@angular/material/sort';
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [ProductRoutingModule, ProductListComponent],
 })

@@ -1,7 +1,16 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 table {
   width: 100%;
 }
 img {
   height: 40px;
   width: auto;
+}
+#editProductButton:hover {
+  color: blue;
+  font-size: 1.2rem;
+}
+#deleteProductButton:hover {
+  color: red;
+  font-size: 1.2rem;
 }
