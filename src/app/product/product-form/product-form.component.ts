@@ -1,16 +1,19 @@
-import { ProductsService } from './../../shared/services/products.service';
 import { Subscription } from 'rxjs';
 import { ProductsModel } from './../../shared/models/ProductsModel';
+import { ProductsService } from './../../shared/services/products.service';
 import { ActivatedRoute } from '@angular/router';
-import { ProductListComponent } from './../product-list/product-list.component';
+import { NgForm } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
-  selector: 'app-product-details',
-  templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css'],
+  selector: 'app-product-form',
+  templateUrl: './product-form.component.html',
+  styleUrls: ['./product-form.component.css'],
 })
-export class ProductDetailsComponent implements OnInit, OnDestroy {
+export class ProductFormComponent implements OnInit, OnDestroy {
+  submit(addProduct: NgForm) {
+    console.log(addProduct);
+  }
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsService
@@ -29,6 +32,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         this.selectedProduct = data;
       }
     });
+    console.log(this.selectedProduct);
   }
 
   ngOnDestroy() {

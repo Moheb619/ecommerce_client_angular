@@ -1,3 +1,4 @@
+import { EditProductComponent } from './edit-product/edit-product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -8,6 +9,7 @@ import { ProductComponent } from './product.component';
 const routes: Routes = [
   { path: '', component: ProductComponent },
   { path: 'add-product', component: AddProductComponent },
+  { path: 'edit-product/:short_code', component: EditProductComponent },
   { path: 'product-details/:short_code', component: ProductDetailsComponent },
 ];
 

@@ -11,12 +11,16 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AddProductComponent } from './add-product/add-product.component';
+import { ProductFormComponent } from './product-form/product-form.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 @NgModule({
   declarations: [
     ProductComponent,
     ProductListComponent,
     ProductDetailsComponent,
     AddProductComponent,
+    ProductFormComponent,
+    EditProductComponent,
   ],
   imports: [
     CommonModule,

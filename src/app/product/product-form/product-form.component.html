@@ -1,0 +1,216 @@
+<div class="container my-3 d-flex justify-content-center">
+  <form #addProduct="ngForm" (ngSubmit)="submit(addProduct)">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Product Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputProductName4"
+          placeholder="Ex: Hp Probook"
+          name="inputProductName4"
+          required
+          [(ngModel)]="selectedProduct.name"
+          #pName="ngModel"
+        />
+        <div class="text-danger" *ngIf="pName.invalid && pName.touched">
+          Product Name is required
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputProductShortCode4">Product Short Code</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputProductShortCode4"
+          placeholder="Ex: dlikfgjhl"
+          name="inputProductShortCode4"
+          required
+          [(ngModel)]="selectedProduct.short_code"
+          #pShortCode="ngModel"
+        />
+        <div
+          class="text-danger"
+          *ngIf="pShortCode.invalid && pShortCode.touched"
+        >
+          Product Short Code is required
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="categoryinputState">Category</label>
+        <select
+          id="categoryinputState"
+          class="form-control"
+          name="inputProductCategory4"
+          required
+          [(ngModel)]="selectedProduct.category"
+          #pCategory="ngModel"
+        >
+          <option selected value="">Choose...</option>
+          <option value="computer">Computer</option>
+          <option value="accessories">Accessories</option>
+        </select>
+        <div class="text-danger" *ngIf="pCategory.invalid && pCategory.touched">
+          Product Category is required
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPrice4">Price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="inputPrice4"
+          placeholder="Ex: 30000"
+          name="inputProductPrice4"
+          required
+          [(ngModel)]="selectedProduct.price"
+          #pPrice="ngModel"
+        />
+        <div class="text-danger" *ngIf="pPrice.invalid && pPrice.touched">
+          Product Price is required
+        </div>
+      </div>
+      <div class="form-outline">
+        <label for="textAreaDescription">Description</label>
+        <textarea
+          class="form-control"
+          id="textAreaDescription1"
+          rows="4"
+          name="inputProductDescription4"
+          required
+          [(ngModel)]="selectedProduct.description"
+          minlength="10"
+          #pDescription="ngModel"
+        ></textarea>
+        <div
+          class="text-danger"
+          *ngIf="pDescription?.hasError('required') && pDescription.touched"
+        >
+          Product Description is required
+        </div>
+        <div
+          class="text-danger"
+          *ngIf="
+            addProduct.controls['inputProductDescription4']?.hasError(
+              'minlength'
+            )
+          "
+        >
+          Product Description must be more than 10 character.
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputProductImageUrl4">Image URL</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputProductImageUrl4"
+            placeholder="Ex: https://media.istockphoto.com/photos/modern-laptop-with-empty-screen-on-white-background-mockup-design-picture-id1182241805?b=1&k=20&m=1182241805&s=612x612&w=0&h=8LGcGIlPCE1pEOKOqrN4WP-UsXobLqc4EnqC71niFrc="
+            name="inputProductImageUrl4"
+            required
+            [(ngModel)]="selectedProduct.image_url"
+            #pImageUrl="ngModel"
+          />
+          <div
+            class="text-danger"
+            *ngIf="pImageUrl.invalid && pImageUrl.touched"
+          >
+            Product Image URL is required
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="isBestAchievedinputState">Is Best Achieved</label>
+          <select
+            id="isBestAchievedinputState"
+            class="form-control"
+            name="inputProductIsBestAchieved4"
+            required
+            [(ngModel)]="selectedProduct.is_best_achieved"
+            #pBest="ngModel"
+          >
+            <option selected value="">Choose...</option>
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
+          <div class="text-danger" *ngIf="pBest.invalid && pBest.touched">
+            Product is best achieved is required
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputProductCreatedDate4">Created Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="inputProductCreatedDate4"
+            name="inputProductCreatedDate4"
+            required
+            [(ngModel)]="selectedProduct.created_date"
+            #pCreatedDate="ngModel"
+          />
+          <div
+            class="text-danger"
+            *ngIf="pCreatedDate.invalid && pCreatedDate.touched"
+          >
+            Product Created Date is required
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="origininputState">Origin</label>
+          <select
+            id="origininputState"
+            class="form-control"
+            name="inputProductOrigin4"
+            required
+            [(ngModel)]="selectedProduct.origin"
+            #pOrigin="ngModel"
+          >
+            <option selected value="">Choose...</option>
+            <option value="computer">Computer</option>
+            <option value="laptop">Laptop</option>
+            <option value="accessories">Accessories</option>
+          </select>
+          <div class="text-danger" *ngIf="pOrigin.invalid && pOrigin.touched">
+            Product Origin is required
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputQuantity4">Quantity</label>
+          <input
+            type="number"
+            class="form-control"
+            id="inputQuantity4"
+            placeholder="Ex: 5"
+            name="inputProductQuantity4"
+            required
+            [(ngModel)]="selectedProduct.quantity"
+            #pQuantity="ngModel"
+          />
+          <div
+            class="text-danger"
+            *ngIf="pQuantity.invalid && pQuantity.touched"
+          >
+            Product Quantity is required
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputRating4">Rating</label>
+          <input
+            type="number"
+            class="form-control"
+            id="inputRating4"
+            placeholder="Ex: 5"
+            name="inputProductRating4"
+            required
+            [(ngModel)]="selectedProduct.rating"
+            #pRating="ngModel"
+          />
+          <div class="text-danger" *ngIf="pRating.invalid && pRating.touched">
+            Product Rating is required
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary my-2">
+      {{ selectedProduct == undefined ? "Add" : "Update" }}
+    </button>
+  </form>
+</div>
