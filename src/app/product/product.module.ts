@@ -1,4 +1,4 @@
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -26,7 +26,6 @@ import { AddProductComponent } from './add-product/add-product.component';
     MatSortModule,
     MatFormFieldModule,
     FormsModule,
-    ReactiveFormsModule,
   ],
   exports: [ProductRoutingModule, ProductListComponent],
 })
