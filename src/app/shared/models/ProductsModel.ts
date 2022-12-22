@@ -9,5 +9,5 @@ export class ProductsModel {
   created_date: string;
   origin: string;
   quantity: number;
-  rating: number;
+  ratings: number;
 }

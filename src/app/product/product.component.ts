@@ -30,7 +30,7 @@ export class ProductComponent implements AfterViewInit, OnInit, OnDestroy {
     'created_date',
     'origin',
     'quantity',
-    'rating',
+    'ratings',
     'action',
   ];
   ELEMENT_DATA = [];
@@ -44,16 +44,22 @@ export class ProductComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit(): void {
-    this.subscription = this.productsService.getProducts().subscribe((data) => {
-      this.ELEMENT_DATA = data;
-      this.dataSource = new MatTableDataSource<ProductsModel>(
-        this.ELEMENT_DATA
-      );
-    });
+    try {
+      this.subscription = this.productsService
+        .getProducts()
+        .subscribe((data) => {
+          this.ELEMENT_DATA = data;
+          this.dataSource = new MatTableDataSource<ProductsModel>(
+            this.ELEMENT_DATA
+          );
+        });
+    } catch (err) {}
   }
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    try {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    } catch (err) {}
   }
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {

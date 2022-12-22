@@ -30,7 +30,7 @@
                   <div class="sold_stars ml-auto">
                     <i
                       class="fa fa-star"
-                      *ngFor="let num of createRange(data.rating)"
+                      *ngFor="let num of createRange(data.ratings)"
                     ></i>
                   </div>
                 </div>
@@ -41,7 +41,7 @@
             </div>
           </div>
         </div>
-        <a routerLink="/Product/product-details/{{ data.short_code }}"
+        <a routerLink="/Product/product-details/{{ data._id }}"
           ><button class="btn btn-primary">Details</button></a
         >
       </div>

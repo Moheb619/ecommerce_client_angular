@@ -4,7 +4,8 @@ import { ProductsService } from './../../shared/services/products.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
+import { DatePipe } from '@angular/common';
+import { ThisReceiver } from '@angular/compiler';
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
@@ -14,25 +15,30 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   submit(addProduct: NgForm) {
     console.log(addProduct);
   }
+  formattedDate: any;
   constructor(
     private route: ActivatedRoute,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private datepipe: DatePipe = new DatePipe('en-US')
   ) {}
-  short_code: any;
-  selectedProduct: ProductsModel;
-  ELEMENT_DATA: any = [];
+  id: any;
+  selectedProduct: any;
   subscription: Subscription;
   ngOnInit() {
-    this.short_code = this.route.snapshot.paramMap.get('short_code');
-    this.subscription = this.productsService.getProducts().subscribe((data) => {
-      this.ELEMENT_DATA = data;
-    });
-    this.ELEMENT_DATA.map((data: any) => {
-      if (data.short_code === this.short_code) {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.subscription = this.productsService
+      .getProductByShortCode(this.id)
+      .subscribe((data) => {
         this.selectedProduct = data;
-      }
-    });
-    console.log(this.selectedProduct);
+        this.formattedDate = this.datepipe.transform(
+          this.selectedProduct.created_date,
+          'yyyy-MM-dd'
+        );
+        this.selectedProduct.created_date = this.formattedDate.toString();
+      });
+    if (this.selectedProduct == undefined) {
+      this.selectedProduct = '';
+    }
   }
 
   ngOnDestroy() {

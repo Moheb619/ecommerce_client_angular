@@ -15,20 +15,19 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private productsService: ProductsService
   ) {}
-  short_code: any;
-  selectedProduct: ProductsModel;
-  ELEMENT_DATA: any = [];
+  id: any;
+  selectedProduct: any;
   subscription: Subscription;
   ngOnInit() {
-    this.short_code = this.route.snapshot.paramMap.get('short_code');
-    this.subscription = this.productsService.getProducts().subscribe((data) => {
-      this.ELEMENT_DATA = data;
-    });
-    this.ELEMENT_DATA.map((data: any) => {
-      if (data.short_code === this.short_code) {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.subscription = this.productsService
+      .getProductByShortCode(this.id)
+      .subscribe((data) => {
         this.selectedProduct = data;
-      }
-    });
+      });
+    if (this.selectedProduct == undefined) {
+      this.selectedProduct = '';
+    }
   }
 
   ngOnDestroy() {

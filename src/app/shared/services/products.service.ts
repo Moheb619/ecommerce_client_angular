@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { ProductsModel } from '../models/ProductsModel';
@@ -20,7 +20,7 @@ export class ProductsService {
       created_date: '2022-12-22',
       origin: 'computer',
       quantity: 18,
-      rating: 5,
+      ratings: 5,
     },
     {
       name: 'HP',
@@ -34,7 +34,7 @@ export class ProductsService {
       created_date: '2022-11-26',
       origin: 'computer',
       quantity: 5,
-      rating: 4,
+      ratings: 4,
     },
     {
       name: 'Lenovo',
@@ -48,7 +48,7 @@ export class ProductsService {
       created_date: '2022-12-22',
       origin: 'computer',
       quantity: 52,
-      rating: 2,
+      ratings: 2,
     },
     {
       name: 'Acer',
@@ -62,7 +62,7 @@ export class ProductsService {
       created_date: '2022-12-22',
       origin: 'computer',
       quantity: 12,
-      rating: 4,
+      ratings: 4,
     },
     {
       name: 'Asus',
@@ -76,7 +76,7 @@ export class ProductsService {
       created_date: '2022-12-22',
       origin: 'computer',
       quantity: 16,
-      rating: 4,
+      ratings: 4,
     },
     {
       name: 'MSI',
@@ -89,7 +89,7 @@ export class ProductsService {
       created_date: '2022-12-22',
       origin: 'computer',
       quantity: 32,
-      rating: 1,
+      ratings: 1,
     },
     {
       name: 'Microsoft Surface',
@@ -103,7 +103,7 @@ export class ProductsService {
       created_date: '2021-10-12',
       origin: 'computer',
       quantity: 13,
-      rating: 2,
+      ratings: 2,
     },
     {
       name: 'Razer',
@@ -117,7 +117,7 @@ export class ProductsService {
       created_date: '2022-12-22',
       origin: 'computer',
       quantity: 3,
-      rating: 5,
+      ratings: 5,
     },
     {
       name: 'Razer',
@@ -131,7 +131,7 @@ export class ProductsService {
       created_date: '2022-12-22',
       origin: 'computer',
       quantity: 3,
-      rating: 3,
+      ratings: 3,
     },
     {
       name: 'Razer',
@@ -144,7 +144,7 @@ export class ProductsService {
       created_date: '2022-12-22',
       origin: 'computer',
       quantity: 3,
-      rating: 4,
+      ratings: 4,
     },
     {
       name: 'Razer',
@@ -158,7 +158,7 @@ export class ProductsService {
       created_date: '2022-12-22',
       origin: 'computer',
       quantity: 3,
-      rating: 2,
+      ratings: 2,
     },
     {
       name: 'Razer',
@@ -172,11 +172,17 @@ export class ProductsService {
       created_date: '2022-12-22',
       origin: 'computer',
       quantity: 3,
-      rating: 1,
+      ratings: 1,
     },
   ];
 
+  constructor(private http: HttpClient) {}
   getProducts(): Observable<any> {
-    return of(this.ELEMENT_DATA);
+    return this.http.get('http://localhost:8800/api/products/getAllProducts');
+  }
+  getProductByShortCode(id: string): Observable<any> {
+    return this.http.get(
+      `http://localhost:8800/api/products/getProductById/${id}`
+    );
   }
 }

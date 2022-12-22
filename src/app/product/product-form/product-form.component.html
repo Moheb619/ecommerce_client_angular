@@ -144,6 +144,7 @@
             name="inputProductCreatedDate4"
             required
             [(ngModel)]="selectedProduct.created_date"
+            ngModel="12-22-2022"
             #pCreatedDate="ngModel"
           />
           <div
@@ -200,7 +201,7 @@
             placeholder="Ex: 5"
             name="inputProductRating4"
             required
-            [(ngModel)]="selectedProduct.rating"
+            [(ngModel)]="selectedProduct.ratings"
             #pRating="ngModel"
           />
           <div class="text-danger" *ngIf="pRating.invalid && pRating.touched">
@@ -210,7 +211,7 @@
       </div>
     </div>
     <button type="submit" class="btn btn-primary my-2">
-      {{ selectedProduct == undefined ? "Add" : "Update" }}
+      {{ selectedProduct ? "Update" : "Add" }}
     </button>
   </form>
 </div>

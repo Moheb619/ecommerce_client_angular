@@ -133,7 +133,7 @@
         </th>
         <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
       </ng-container>
-      <ng-container matColumnDef="rating">
+      <ng-container matColumnDef="ratings">
         <th
           mat-header-cell
           *matHeaderCellDef
@@ -142,7 +142,7 @@
         >
           Rating
         </th>
-        <td mat-cell *matCellDef="let element">{{ element.rating }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.ratings }}</td>
       </ng-container>
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Action</th>
@@ -150,7 +150,7 @@
           <button
             class="btn"
             id="editProductButton"
-            routerLink="/Product/edit-product/{{ element.short_code }}"
+            routerLink="/Product/edit-product/{{ element._id }}"
           >
             <i class="bi bi-pen"></i>
           </button>
