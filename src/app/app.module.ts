@@ -9,6 +9,7 @@ import { NavComponentComponent } from './nav-component/nav-component.component';
 import { DataTablesModule } from 'angular-datatables';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe } from '@angular/common';
+import { ProductsService } from './shared/services/products.service';
 @NgModule({
   declarations: [AppComponent, NavComponentComponent],
   imports: [

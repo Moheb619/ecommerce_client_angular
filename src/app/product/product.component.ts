@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { ProductsModel } from './../shared/models/ProductsModel';
 import { ProductsService } from './../shared/services/products.service';
 import {
@@ -11,13 +12,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
-import { Subscription } from 'rxjs';
+import { elementAt, Subscription } from 'rxjs';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
 })
-export class ProductComponent implements AfterViewInit, OnInit, OnDestroy {
+export class ProductComponent implements AfterViewInit, OnDestroy {
   subscription: Subscription;
   displayedColumns: string[] = [
     'name',
@@ -33,40 +34,37 @@ export class ProductComponent implements AfterViewInit, OnInit, OnDestroy {
     'ratings',
     'action',
   ];
-  ELEMENT_DATA = [];
   dataSource: MatTableDataSource<ProductsModel>;
-
+  temp: any;
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private datepipe: DatePipe
   ) {}
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
-  ngOnInit(): void {
+  formattedDate: any;
+  ngAfterViewInit(): void {
     try {
       this.subscription = this.productsService
         .getProducts()
-        .subscribe((data) => {
-          this.ELEMENT_DATA = data;
-          this.dataSource = new MatTableDataSource<ProductsModel>(
-            this.ELEMENT_DATA
-          );
+        .subscribe((data: any) => {
+          this.dataSource = new MatTableDataSource<ProductsModel>(data);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
         });
     } catch (err) {}
   }
-  ngAfterViewInit() {
-    try {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    } catch (err) {}
-  }
+
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+  formatDate(date: any) {
+    return this.datepipe.transform(date, 'yyyy-MM-dd')?.toString();
   }
   ngOnDestroy() {
     this.subscription?.unsubscribe();
