@@ -5,16 +5,12 @@ import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { ThisReceiver } from '@angular/compiler';
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css'],
 })
 export class ProductFormComponent implements OnInit, OnDestroy {
-  submit(addProduct: NgForm) {
-    console.log(addProduct);
-  }
   formattedDate: any;
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +20,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   id: any;
   selectedProduct: any;
   subscription: Subscription;
+  subscription2: Subscription;
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.subscription = this.productsService
@@ -37,11 +34,24 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         this.selectedProduct.created_date = this.formattedDate.toString();
       });
     if (this.selectedProduct == undefined) {
-      this.selectedProduct = '';
+      this.selectedProduct = {};
     }
   }
-
+  submit(addProduct: NgForm) {
+    try {
+      if (addProduct.valid) {
+        this.subscription2 = this.productsService
+          .addProduct(this.selectedProduct)
+          .subscribe((data) => {
+            console.log(data);
+          });
+      } else {
+        console.log(this.selectedProduct);
+      }
+    } catch (err) {}
+  }
   ngOnDestroy() {
     this.subscription?.unsubscribe();
+    this.subscription2?.unsubscribe();
   }
 }

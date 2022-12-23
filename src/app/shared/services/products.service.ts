@@ -184,4 +184,10 @@ export class ProductsService {
       `http://localhost:8800/api/products/getProductById/${id}`
     );
   }
+  addProduct(product: ProductsModel): Observable<any> {
+    return this.http.post(
+      'http://localhost:8800/api/products/addProduct',
+      product
+    );
+  }
 }
