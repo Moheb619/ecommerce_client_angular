@@ -176,10 +176,10 @@ export class ProductsService {
   ];
 
   constructor(private http: HttpClient) {}
-  getProducts() {
+  getProducts(): Observable<any> {
     return this.http.get('http://localhost:8800/api/products/getAllProducts');
   }
-  getProductByShortCode(id: string): Observable<any> {
+  getProductById(id: string): Observable<any> {
     return this.http.get(
       `http://localhost:8800/api/products/getProductById/${id}`
     );
@@ -188,6 +188,19 @@ export class ProductsService {
     return this.http.post(
       'http://localhost:8800/api/products/addProduct',
       product
+    );
+  }
+
+  updateProduct(product: ProductsModel, id: any): Observable<any> {
+    return this.http.put(
+      `http://localhost:8800/api/products/updateProduct/${id}`,
+      product
+    );
+  }
+
+  deleteProductById(id: any): Observable<any> {
+    return this.http.delete(
+      `http://localhost:8800/api/products/deleteProduct/${id}`
     );
   }
 }

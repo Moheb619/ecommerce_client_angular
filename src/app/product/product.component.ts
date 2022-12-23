@@ -20,6 +20,7 @@ import { elementAt, Subscription } from 'rxjs';
 })
 export class ProductComponent implements AfterViewInit, OnDestroy {
   subscription: Subscription;
+  subscription2: Subscription;
   displayedColumns: string[] = [
     'name',
     'short_code',
@@ -66,7 +67,22 @@ export class ProductComponent implements AfterViewInit, OnDestroy {
   formatDate(date: any) {
     return this.datepipe.transform(date, 'yyyy-MM-dd')?.toString();
   }
+  deleteProductFromList(id: any) {
+    this.subscription2 = this.productsService
+      .deleteProductById(id)
+      .subscribe((data) => {
+        this.subscription = this.productsService
+          .getProducts()
+          .subscribe((data: any) => {
+            this.dataSource = new MatTableDataSource<ProductsModel>(data);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+          });
+        window.alert(data);
+      });
+  }
   ngOnDestroy() {
     this.subscription?.unsubscribe();
+    this.subscription2?.unsubscribe();
   }
 }

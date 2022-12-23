@@ -46,7 +46,7 @@
           [(ngModel)]="selectedProduct.category"
           #pCategory="ngModel"
         >
-          <!-- <option selected value="">Choose...</option> -->
+          <option disabled selected value="undefined">Choose...</option>
           <option value="computer">Computer</option>
           <option value="accessories">Accessories</option>
         </select>
@@ -127,7 +127,7 @@
             [(ngModel)]="selectedProduct.is_best_achieved"
             #pBest="ngModel"
           >
-            <!-- <option selected value="">Choose...</option> -->
+            <option disabled selected value="undefined">Choose...</option>
             <option value="true">True</option>
             <option value="false">False</option>
           </select>
@@ -164,7 +164,7 @@
             [(ngModel)]="selectedProduct.origin"
             #pOrigin="ngModel"
           >
-            <!-- <option selected value="">Choose...</option> -->
+            <option disabled selected value="undefined">Choose...</option>
             <option value="computer">Computer</option>
             <option value="laptop">Laptop</option>
             <option value="accessories">Accessories</option>
@@ -211,7 +211,11 @@
       </div>
     </div>
     <button type="submit" class="btn btn-primary my-2">
-      {{ selectedProduct._id ? "Update" : "Add" }}
+      {{
+        selectedProduct._id
+          ? buttonRoleFunction("Update")
+          : buttonRoleFunction("Add")
+      }}
     </button>
   </form>
 </div>

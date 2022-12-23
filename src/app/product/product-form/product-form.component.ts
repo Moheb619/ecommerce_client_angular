@@ -21,10 +21,11 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   selectedProduct: any;
   subscription: Subscription;
   subscription2: Subscription;
+  buttonRole: string;
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.subscription = this.productsService
-      .getProductByShortCode(this.id)
+      .getProductById(this.id)
       .subscribe((data) => {
         this.selectedProduct = data;
         this.formattedDate = this.datepipe.transform(
@@ -39,16 +40,32 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   }
   submit(addProduct: NgForm) {
     try {
+      console.log(this.buttonRole);
       if (addProduct.valid) {
-        this.subscription2 = this.productsService
-          .addProduct(this.selectedProduct)
-          .subscribe((data) => {
-            console.log(data);
-          });
+        if (this.buttonRole === 'Add') {
+          this.subscription2 = this.productsService
+            .addProduct(this.selectedProduct)
+            .subscribe((data) => {
+              console.log(data);
+            });
+          window.alert('Product Added Successfully');
+        } else if (this.buttonRole === 'Update') {
+          this.subscription2 = this.productsService
+            .updateProduct(this.selectedProduct, this.id)
+            .subscribe((data) => {
+              console.log(data);
+            });
+          window.alert('Product Updated Successfully');
+        }
+        addProduct.reset();
       } else {
         console.log(this.selectedProduct);
       }
     } catch (err) {}
+  }
+  buttonRoleFunction(role: any) {
+    this.buttonRole = role;
+    return role;
   }
   ngOnDestroy() {
     this.subscription?.unsubscribe();
