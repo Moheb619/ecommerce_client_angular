@@ -11,10 +11,14 @@
           name="inputProductName4"
           required
           [(ngModel)]="selectedProduct.name"
+          (ngModelChange)="duplicateNameCheck($event)"
           #pName="ngModel"
         />
         <div class="text-danger" *ngIf="pName.invalid && pName.touched">
           Product Name is required
+        </div>
+        <div class="text-danger" *ngIf="duplicateNameMessage">
+          {{ duplicateNameMessage }}
         </div>
       </div>
       <div class="form-group col-md-6">
@@ -27,6 +31,7 @@
           name="inputProductShortCode4"
           required
           [(ngModel)]="selectedProduct.short_code"
+          (ngModelChange)="duplicateShortCodeCheck($event)"
           #pShortCode="ngModel"
         />
         <div
@@ -34,6 +39,9 @@
           *ngIf="pShortCode.invalid && pShortCode.touched"
         >
           Product Short Code is required
+        </div>
+        <div class="text-danger" *ngIf="duplicateShortCodeMessage">
+          {{ duplicateShortCodeMessage }}
         </div>
       </div>
       <div class="form-group col-md-4">
@@ -219,3 +227,4 @@
     </button>
   </form>
 </div>
+<app-footer></app-footer>

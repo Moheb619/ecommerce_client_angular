@@ -1,3 +1,5 @@
+import { RequiredComponentModule } from './../required-component/required-component.module';
+import { AppModule } from './../app.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -30,6 +32,7 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     MatSortModule,
     MatFormFieldModule,
     FormsModule,
+    RequiredComponentModule,
   ],
   exports: [ProductRoutingModule, ProductListComponent],
 })

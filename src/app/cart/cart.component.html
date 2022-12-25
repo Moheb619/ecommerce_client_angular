@@ -20,7 +20,8 @@
                   <div>
                     <p class="mb-1">Shopping cart</p>
                     <p class="mb-0">
-                      You have {{ allCartData.length }} items in your cart
+                      You have {{ allCartAndProductData.length }} items in your
+                      cart
                     </p>
                   </div>
                   <!-- <div>
@@ -35,45 +36,42 @@
 
                 <div
                   class="card mb-3"
-                  *ngFor="let item of allCartDataDetails; let i = index"
+                  *ngFor="let item of allCartAndProductData"
                 >
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <div class="d-flex flex-row align-items-center">
                         <div>
-                          <p>{{ i }}</p>
                           <img
-                            [src]="item.image_url"
+                            [src]="item['image_url']"
                             class="img-fluid rounded-3"
                             alt="Shopping item"
                             style="width: 65px"
                           />
                         </div>
                         <div class="ms-3">
-                          <h5>{{ item.name }}</h5>
-                          <p class="small mb-0">
-                            {{ item.description }}
-                          </p>
+                          <h5>{{ item["name"] }}</h5>
+                          <p class="small mb-0">{{ item["description"] }}</p>
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center">
                         <div style="width: 50px">
                           <h5 class="fw-normal mb-0">
-                            {{ allCartData[i]["product_quantity"] }}
+                            {{ item["product_quantity"] }}
                           </h5>
                         </div>
                         <div style="width: 80px">
-                          <h5 class="mb-0">
-                            {{
-                              item.price * allCartData[i]["product_quantity"]
-                            }}
-                          </h5>
+                          <h5 class="mb-0">{{ item["price"] }}</h5>
                         </div>
                         <button
                           class="btn"
                           style="color: red"
                           (click)="
-                            deleteSelectedCartItem(allCartData[i]['_id'])
+                            deleteSelectedCartItem(
+                              item['_id'],
+                              item['product_id'],
+                              item['product_quantity']
+                            )
                           "
                         >
                           <i class="bi bi-trash3-fill"></i>
@@ -96,27 +94,31 @@
 
                     <div class="d-flex justify-content-between">
                       <p class="mb-2">Subtotal</p>
-                      <p class="mb-2">$4798.00</p>
+                      <p class="mb-2">৳{{ subTotal }}</p>
                     </div>
 
                     <div class="d-flex justify-content-between">
                       <p class="mb-2">Shipping</p>
-                      <p class="mb-2">$20.00</p>
+                      <p class="mb-2">৳{{ shipping }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <p class="mb-2">Tax</p>
+                      <p class="mb-2">{{ tax }}%</p>
                     </div>
 
                     <div class="d-flex justify-content-between mb-4">
                       <p class="mb-2">Total(Incl. taxes)</p>
-                      <p class="mb-2">$4818.00</p>
+                      <p class="mb-2">৳{{ getTotalPrice() }}</p>
                     </div>
 
-                    <button type="button" class="btn btn-info btn-block btn-lg">
+                    <a
+                      routerLink="/Cart/checkout"
+                      class="btn btn-info btn-block btn-lg"
+                    >
                       <div class="d-flex justify-content-between">
-                        <span
-                          >Checkout
-                          <i class="fas fa-long-arrow-alt-right ms-2"></i
-                        ></span>
+                        <span>Checkout</span>
                       </div>
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -127,3 +129,4 @@
     </div>
   </div>
 </section>
+<app-footer></app-footer>
