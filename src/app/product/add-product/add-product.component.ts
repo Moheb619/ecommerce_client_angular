@@ -4,4 +4,6 @@ import { Component } from '@angular/core';
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css'],
 })
-export class AddProductComponent {}
+export class AddProductComponent {
+  formRole: string = 'AddForm';
+}

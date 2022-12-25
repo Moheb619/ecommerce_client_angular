@@ -3,7 +3,7 @@ import { ProductsModel } from './../../shared/models/ProductsModel';
 import { ProductsService } from './../../shared/services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { AnonymousSubject } from 'rxjs/internal/Subject';
 @Component({
@@ -29,6 +29,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   subscription2: Subscription;
   subscription3: Subscription;
   buttonRole: string;
+  @Input() formRole = '';
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.subscription3 = this.productsService
