@@ -16,6 +16,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   duplicateNameMessage: string = '';
   duplicateShortCodeMessage: string = '';
   allProduct: ProductsModel[] = [];
+  footerLoad: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsService,
@@ -39,6 +40,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     this.subscription = this.productsService
       .getProductById(this.id)
       .subscribe((data) => {
+        this.footerLoad = true;
         this.selectedProduct = data;
         this.formattedDate = this.datepipe.transform(
           this.selectedProduct.created_date,

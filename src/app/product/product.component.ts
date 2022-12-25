@@ -21,6 +21,7 @@ import { elementAt, Subscription } from 'rxjs';
 export class ProductComponent implements AfterViewInit, OnDestroy {
   subscription: Subscription;
   subscription2: Subscription;
+  footerLoad: boolean = false;
   displayedColumns: string[] = [
     'name',
     'short_code',
@@ -50,6 +51,7 @@ export class ProductComponent implements AfterViewInit, OnDestroy {
       this.subscription = this.productsService
         .getProducts()
         .subscribe((data: any) => {
+          this.footerLoad = true;
           this.dataSource = new MatTableDataSource<ProductsModel>(data);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;

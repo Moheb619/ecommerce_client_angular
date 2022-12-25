@@ -23,12 +23,14 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   selectedProduct: any;
   productQuantity: number = 0;
   subscription: Subscription[] = [];
+  footerLoad: boolean = false;
 
   cartItem: any;
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.subscription.push(
       this.productsService.getProductById(this.id).subscribe((data) => {
+        this.footerLoad = true;
         this.selectedProduct = data;
       })
     );

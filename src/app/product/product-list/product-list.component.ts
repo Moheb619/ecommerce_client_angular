@@ -12,9 +12,11 @@ export class ProductListComponent {
   }
   subscription: Subscription;
   ELEMENT_DATA: any = [];
+  footerLoad: boolean = false;
   constructor(private productsService: ProductsService) {}
   ngOnInit(): void {
     this.subscription = this.productsService.getProducts().subscribe((data) => {
+      this.footerLoad = true;
       this.ELEMENT_DATA = data;
     });
   }

@@ -9,7 +9,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
   subscription: Subscription[] = [];
-
+  footerLoad: boolean = false;
   constructor(private cartService: CartService) {}
   ngOnInit(): void {
     this.checkout();
@@ -17,7 +17,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   checkout() {
     this.subscription.push(
-      this.cartService.deleteAllCartItem().subscribe((d) => {})
+      this.cartService.deleteAllCartItem().subscribe((d) => {
+        this.footerLoad = true;
+      })
     );
   }
   ngOnDestroy() {

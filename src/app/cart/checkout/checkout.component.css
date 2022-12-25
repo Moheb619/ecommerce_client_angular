@@ -13,6 +13,7 @@
 }
 .box {
   border-radius: 20px;
+  padding: 2px;
   font-size: 3px;
   font-weight: bolder;
   width: 60px;
@@ -28,6 +29,7 @@
   0% {
     width: 60px;
     height: 60px;
+    padding: 2px;
     font-size: 3px;
     background: #f0f0f0;
     box-shadow: 0 0 0 #cccccc, 0 0 0 #ffffff, 10px 10px 10px #cccccc inset,
@@ -36,6 +38,7 @@
   25% {
     width: 60px;
     height: 60px;
+    padding: 2px;
     font-size: 3px;
     background: #f8f8f8;
     box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff,
@@ -44,6 +47,7 @@
   50% {
     width: 60px;
     height: 240px;
+    padding: 2px;
     font-size: 3px;
     background: #f8f8f8;
     box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff,
@@ -52,7 +56,9 @@
   100% {
     width: 60vw;
     height: 240px;
-    font-size: 300%;
+    font-size: 210%;
+    padding: 20px;
+    text-align: center;
     line-height: 50px;
     background: #fafafa;
     box-shadow: 40px 40px 40px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset,

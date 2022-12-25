@@ -9,6 +9,7 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit, OnDestroy {
+  footerLoad: boolean = false;
   subscription: Subscription[] = [];
   allCartAndProductData: any = [];
   subTotal: number = 0;
@@ -22,6 +23,7 @@ export class CartComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription.push(
       this.cartService.getAllCartItems().subscribe((data: any) => {
+        this.footerLoad = true;
         data.map((cData: any, i: any) => {
           this.subscription.push(
             this.productsService

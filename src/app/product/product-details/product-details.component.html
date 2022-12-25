@@ -41,11 +41,24 @@
               </p>
             </div>
             <div class="col-lg-12">
-              <h6>Quantity :</h6>
+              <h6>
+                Quantity :
+                {{
+                  selectedProduct.quantity - productQuantity >= 0
+                    ? selectedProduct.quantity - productQuantity
+                    : 0
+                }}
+                remaining
+              </h6>
               <input
                 type="number"
                 class="form-control text-center w-100"
-                [value]="productQuantity"
+                [value]="
+                  productQuantity >= 0 &&
+                  productQuantity <= selectedProduct.quantity
+                    ? productQuantity
+                    : selectedProduct.quantity
+                "
                 min="0"
                 [max]="selectedProduct.quantity"
                 [(ngModel)]="productQuantity"
@@ -56,7 +69,9 @@
                 <div class="col-lg-6 pb-2">
                   <button
                     [ngClass]="
-                      selectedProduct.quantity
+                      selectedProduct.quantity > 0 &&
+                      productQuantity <= selectedProduct.quantity &&
+                      productQuantity > 0
                         ? 'btn btn-danger w-100'
                         : 'btn btn-danger w-100 disabled'
                     "
@@ -74,7 +89,7 @@
                 </div>
                 <p
                   [ngClass]="
-                    selectedProduct.quantity
+                    selectedProduct.quantity || footerLoad == false
                       ? 'd-none'
                       : 'text-danger text-center'
                   "
@@ -89,4 +104,4 @@
     </div>
   </div>
 </div>
-<app-footer></app-footer>
+<app-footer [ngClass]="footerLoad ? '' : 'd-none'"></app-footer>
