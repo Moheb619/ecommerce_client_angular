@@ -17,7 +17,7 @@ const routes: Routes = [
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
-    path: 'required-component',
+    path: '',
     loadChildren: () =>
       import('./required-component/required-component.module').then(
         (m) => m.RequiredComponentModule
