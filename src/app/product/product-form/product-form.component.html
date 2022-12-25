@@ -1,4 +1,9 @@
 <div class="container my-3 d-flex justify-content-center">
+  <div [ngClass]="footerLoad ? 'd-none' : 'text-center my-5'">
+    <div class="spinner-border text-info mx-auto" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
   <form #addProduct="ngForm" (ngSubmit)="submit(addProduct)">
     <div class="form-row">
       <div class="form-group col-md-6">

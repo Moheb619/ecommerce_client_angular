@@ -19,7 +19,12 @@
                 >
                   <div>
                     <p class="mb-1">Shopping cart</p>
-                    <p class="mb-0">
+
+                    <p
+                      [ngClass]="
+                        allCartAndProductData.length ? 'mb-0' : 'd-none'
+                      "
+                    >
                       You have {{ allCartAndProductData.length }} items in your
                       cart
                     </p>
@@ -33,7 +38,11 @@
                     </p>
                   </div> -->
                 </div>
-
+                <div [ngClass]="footerLoad ? 'd-none' : 'text-center my-5'">
+                  <div class="spinner-border text-info mx-auto" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
                 <div
                   class="card mb-3"
                   *ngFor="let item of allCartAndProductData"

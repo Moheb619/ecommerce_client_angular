@@ -5,6 +5,11 @@
     >
   </div>
   <div class="mat-elevation-z8" style="overflow-x: scroll">
+    <div [ngClass]="footerLoad ? 'd-none' : 'text-center my-5'">
+      <div class="spinner-border text-info mx-auto" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
     <table
       mat-table
       [dataSource]="dataSource"
@@ -170,6 +175,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
+
   <mat-paginator
     [pageSizeOptions]="[10, 15, 20]"
     showFirstLastButtons
