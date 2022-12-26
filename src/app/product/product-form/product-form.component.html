@@ -1,7 +1,9 @@
 <div class="container my-3 d-flex justify-content-center">
   <div
     [ngClass]="
-      formRole == 'UpdateForm' && footerLoad ? 'd-none' : 'text-center my-5'
+      formRole == 'AddForm' || (formRole == 'UpdateForm' && footerLoad)
+        ? 'd-none'
+        : 'text-center my-5'
     "
   >
     <div class="spinner-border text-info mx-auto" role="status">
